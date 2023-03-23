@@ -1,5 +1,6 @@
-import UIKit
+import Foundation
 import SwiftUI
+import Combine
 
 private let _imageCache = NSCache<AnyObject, AnyObject>()
 

@@ -27,7 +27,7 @@ struct MovieItems: View {
             .cornerRadius(8)
             .shadow(radius: 6)
            
-            Text(movie.title)
+            Text(movie.title ?? "")
         }
         .onAppear{
             self.imageLoader.loadImage(with: self.movie.backdropURL)
