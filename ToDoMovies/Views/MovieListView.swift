@@ -8,13 +8,36 @@
 import SwiftUI
 
 struct MovieListView: View {
+   
+    let movies : [Movie]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            
+            List{
+                MoviePosterCarouseView(title: "Now Playing", movie: movies)
+
+                MovieCarouseView(title: "Up Coming", movies: movies)
+
+                MovieCarouseView(title: "Top Rate", movies: movies)
+                
+            }
+                .navigationTitle("ToDo Movies")
+                .toolbar{
+                    Button{
+                    } label: {
+                        Label("User", systemImage: "person.crop.circle")
+                    }
+                }
+            }
+            
+        }
     }
-}
+
 
 struct MovieListView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieListView()
+        MovieListView(movies: Movie.stubbedMovies.results ?? [])
+            
     }
 }

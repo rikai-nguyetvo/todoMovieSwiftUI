@@ -11,7 +11,7 @@ import SwiftUI
 struct ToDoMoviesApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(movies: Movie.stubbedMovies.results!)
         }
     }
 }

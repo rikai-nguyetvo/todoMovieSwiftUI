@@ -14,18 +14,16 @@ protocol MovieService{
     
 }
 
-enum MovieListEndpoint: String, CaseIterable{
+enum MovieListEndpoint: String, CaseIterable, CodingKey{
     case nowPlaying = "now_playing"
     case upComing
     case topRate = "top_rate"
-    case popular
     
     var description : String {
         switch self{
         case .nowPlaying: return "Now Playing"
         case .upComing: return "UpComing"
         case .topRate: return "Top Rate"
-        case . popular: return "Popular"
         }
     }
 }
@@ -49,5 +47,5 @@ enum MovieError: Error, CustomNSError {
     var errorUserInfor : [String: Any] {
         [NSLocalizedDescriptionKey: localDescription]
     }
-
 }
+

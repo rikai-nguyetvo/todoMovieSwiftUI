@@ -8,16 +8,31 @@
 import SwiftUI
 
 struct ContentView: View {
+    let movies : [Movie]
+    @State private var selection: Tab = .home
+    enum Tab {
+          case home
+          case movelist
+      }
     var body: some View {
-        VStack {
-           Text("Hello, world!")
-        }
-        .padding()
+        TabView(selection: $selection) {
+            MovieListView(movies: movies)
+                .tabItem(){
+                    Label("Home", systemImage: "star")
+                }
+                       .tag(Tab.home)
+
+                   MovieListView(movies: movies)
+                .tabItem(){
+                    Label("List", systemImage: "list.bullet")
+                }
+                       .tag(Tab.movelist)
+               }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(movies: Movie.stubbedMovies.results!)
     }
 }

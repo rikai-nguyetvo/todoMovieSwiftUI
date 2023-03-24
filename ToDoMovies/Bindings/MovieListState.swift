@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import Combine
 
 class MovieListState : ObservableObject {
-    @Published var movies: [Movie]?
-    @Published var isLoading = false
+    @Published var movies : [Movie]?
+    @Published var isLoading : Bool = false
     @Published var error: NSError?
     
     
@@ -22,14 +23,14 @@ class MovieListState : ObservableObject {
     func loadMovies(with endpoint: MovieListEndpoint){
         self.movies = nil
         self.isLoading = false
-        self.movieService.fetchMovies(from: endpoint){ [weak self] (result) in
+        self.movieService.fetchMovies(from: endpoint){ [weak self] result in
             guard let self = self else {return}
             
             self.isLoading = false
             
             switch result {
             case.success(let reponse):
-                self.movies = reponse.results
+                self.movies! = reponse.results
             case.failure(let error):
                 self.error = error as NSError
             }
@@ -37,6 +38,5 @@ class MovieListState : ObservableObject {
         }
         
     }
-    
 }
 

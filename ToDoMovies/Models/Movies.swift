@@ -11,7 +11,7 @@ struct MovieReponsive: Decodable {
     let results : [Movie]
 }
 
-struct Movie : Codable, Identifiable {
+struct Movie : Hashable, Codable, Identifiable  {
     let popularity: Double?
     let voteCount: Int?
     let video: Bool?
