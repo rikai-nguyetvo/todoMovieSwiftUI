@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct MovieCarouseView: View {
-    let movies: [Movie]
+   
     let title: String
+    let movies: [Movie]
     
     var body: some View {
         VStack(alignment: .leading){
@@ -28,13 +29,12 @@ struct MovieCarouseView: View {
                             .padding(.trailing, movie.id == self.movies.last!.id ? 16 : 0)
                     }
                 }
-            }
-        }
+            }      }
     }
 }
 
 struct MovieCarouseView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieCarouseView(movies: Movie.stubbedMovies, title: "Lastet")
+        MovieCarouseView(title: "Playing", movies: Movie.stubbedMovies.results ?? [])
     }
 }

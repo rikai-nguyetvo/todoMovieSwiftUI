@@ -23,6 +23,11 @@
 		A562915429CABE0000C3E0B1 /* LoadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562915329CABE0000C3E0B1 /* LoadImage.swift */; };
 		A562915829CB661800C3E0B1 /* MovieCarouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562915729CB661800C3E0B1 /* MovieCarouseView.swift */; };
 		A562915A29CBECEF00C3E0B1 /* MoviesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562915929CBECEF00C3E0B1 /* MoviesModel.swift */; };
+		A562916329CC578200C3E0B1 /* ListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562916229CC578200C3E0B1 /* ListResponse.swift */; };
+		A562916529CC65B700C3E0B1 /* MoviePosterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562916429CC65B700C3E0B1 /* MoviePosterView.swift */; };
+		A562916729CC6CA200C3E0B1 /* MoviePosterCarouseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562916629CC6CA200C3E0B1 /* MoviePosterCarouseView.swift */; };
+		A562916929CCA37800C3E0B1 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562916829CCA37800C3E0B1 /* MovieListView.swift */; };
+		A562916B29CCA3A400C3E0B1 /* MovieListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562916A29CCA3A400C3E0B1 /* MovieListState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +49,12 @@
 		A562915329CABE0000C3E0B1 /* LoadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadImage.swift; sourceTree = "<group>"; };
 		A562915729CB661800C3E0B1 /* MovieCarouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCarouseView.swift; sourceTree = "<group>"; };
 		A562915929CBECEF00C3E0B1 /* MoviesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesModel.swift; sourceTree = "<group>"; };
+		A562916129CC33C100C3E0B1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		A562916229CC578200C3E0B1 /* ListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListResponse.swift; sourceTree = "<group>"; };
+		A562916429CC65B700C3E0B1 /* MoviePosterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterView.swift; sourceTree = "<group>"; };
+		A562916629CC6CA200C3E0B1 /* MoviePosterCarouseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePosterCarouseView.swift; sourceTree = "<group>"; };
+		A562916829CCA37800C3E0B1 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		A562916A29CCA3A400C3E0B1 /* MovieListState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +87,7 @@
 		A562912B29C98D0600C3E0B1 /* ToDoMovies */ = {
 			isa = PBXGroup;
 			children = (
+				A562916129CC33C100C3E0B1 /* Info.plist */,
 				A562915229CABDE700C3E0B1 /* Bindings */,
 				A562914A29CAB0C400C3E0B1 /* Results */,
 				A562914529C9C1DD00C3E0B1 /* Views */,
@@ -104,6 +116,7 @@
 				A562913C29C99D1700C3E0B1 /* Movies.swift */,
 				A562914829CAB09900C3E0B1 /* MovieStub.swift */,
 				A562915929CBECEF00C3E0B1 /* MoviesModel.swift */,
+				A562916229CC578200C3E0B1 /* ListResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -123,6 +136,9 @@
 			children = (
 				A562914629C9C21800C3E0B1 /* MovieItems.swift */,
 				A562915729CB661800C3E0B1 /* MovieCarouseView.swift */,
+				A562916429CC65B700C3E0B1 /* MoviePosterView.swift */,
+				A562916629CC6CA200C3E0B1 /* MoviePosterCarouseView.swift */,
+				A562916829CCA37800C3E0B1 /* MovieListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				A562915329CABE0000C3E0B1 /* LoadImage.swift */,
+				A562916A29CCA3A400C3E0B1 /* MovieListState.swift */,
 			);
 			path = Bindings;
 			sourceTree = "<group>";
@@ -218,14 +235,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A562916329CC578200C3E0B1 /* ListResponse.swift in Sources */,
+				A562916529CC65B700C3E0B1 /* MoviePosterView.swift in Sources */,
+				A562916929CCA37800C3E0B1 /* MovieListView.swift in Sources */,
 				A562914929CAB09900C3E0B1 /* MovieStub.swift in Sources */,
 				A562914729C9C21800C3E0B1 /* MovieItems.swift in Sources */,
 				A562915829CB661800C3E0B1 /* MovieCarouseView.swift in Sources */,
+				A562916729CC6CA200C3E0B1 /* MoviePosterCarouseView.swift in Sources */,
 				A562912F29C98D0600C3E0B1 /* ContentView.swift in Sources */,
 				A562912D29C98D0600C3E0B1 /* ToDoMoviesApp.swift in Sources */,
 				A562914029C99EDB00C3E0B1 /* MovieService.swift in Sources */,
 				A562913D29C99D1700C3E0B1 /* Movies.swift in Sources */,
 				A562915429CABE0000C3E0B1 /* LoadImage.swift in Sources */,
+				A562916B29CCA3A400C3E0B1 /* MovieListState.swift in Sources */,
 				A562915A29CBECEF00C3E0B1 /* MoviesModel.swift in Sources */,
 				A562914229C9AE5200C3E0B1 /* MovieStore.swift in Sources */,
 				A562914429C9B30000C3E0B1 /* Utils.swift in Sources */,
@@ -285,6 +307,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=*]" = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -337,6 +361,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=*]" = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -355,6 +381,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoMovies/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoMovies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -393,6 +420,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoMovies/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ToDoMovies/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;

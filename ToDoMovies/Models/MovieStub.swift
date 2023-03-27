@@ -3,26 +3,15 @@ import Foundation
 
 extension Movie {
 
-    static var stubbedMovies: [Movie] {
-        let response: MovieReponsive? = try? Bundle.main.loadAndDecodeJSON(filename: "movie_list")
-        return response!.result
+    static var stubbedMovies: ListResponse<Movie> {
+        return load("movie_list.json")
     }
 
     static var stubbedMovie: Movie {
-        stubbedMovies[0]
+//        return Movie(id: 338762, title: "Bloodshot", backdropPath: "/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg", posterPath: "", overview: "ffffdfbdz", voteAverage: 0, voteAcount: 0, runTime: 0)
+        return stubbedMovies.results!.first!
     }
 
 }
 
-extension Bundle {
 
-    func loadAndDecodeJSON<D: Decodable>(filename: String) throws -> D? {
-        guard let url = self.url(forResource: filename, withExtension: "json") else {
-            return nil
-        }
-        let data = try Data(contentsOf: url)
-        let jsonDecoder = Utils.jsonDecode
-        let decodedModel = try jsonDecoder.decode(D.self, from: data)
-        return decodedModel
-    }
-}
