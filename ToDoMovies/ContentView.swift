@@ -22,7 +22,7 @@ struct ContentView: View {
                 }
                        .tag(Tab.home)
 
-                   MovieListView(movies: movies)
+            MovieView(movieId: movies.first?.id ?? 0)
                 .tabItem(){
                     Label("List", systemImage: "list.bullet")
                 }

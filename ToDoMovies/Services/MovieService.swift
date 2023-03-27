@@ -8,21 +8,22 @@
 import Foundation
 
 protocol MovieService{
-    func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieReponsive, MovieError>) ->())
+    func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieReponsive, MovieError>) -> ())
+    
     func fetchMovie(id: Int, completion: @escaping (Result<Movie, MovieError>) -> ())
     func searchMovie(query: String, completion: @escaping (Result<MovieReponsive, MovieError>) -> () )
     
 }
 
-enum MovieListEndpoint: String, CaseIterable, CodingKey{
+enum MovieListEndpoint: String, CaseIterable{
     case nowPlaying = "now_playing"
-    case upComing
-    case topRate = "top_rate"
+    case upcoming
+    case topRate = "top_rated"
     
     var description : String {
         switch self{
         case .nowPlaying: return "Now Playing"
-        case .upComing: return "UpComing"
+        case .upcoming: return "UpComing"
         case .topRate: return "Top Rate"
         }
     }

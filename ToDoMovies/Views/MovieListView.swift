@@ -9,17 +9,22 @@ import SwiftUI
 
 struct MovieListView: View {
    
-    let movies : [Movie]
+    let movies : [Movie]?
     
     var body: some View {
         NavigationView{
             
             List{
-                MoviePosterCarouseView(title: "Now Playing", movie: movies)
+                if movies != nil {
+                    MoviePosterCarouseView(title: "Now Playing", movie: movies!)
+                } else{
+                    LoadingView(isLoading: true, error: nil){
+                        
+                    }
+                }
+                MovieCarouseView(title: "Up Coming", movies: movies!)
 
-                MovieCarouseView(title: "Up Coming", movies: movies)
-
-                MovieCarouseView(title: "Top Rate", movies: movies)
+                MovieCarouseView(title: "Top Rate", movies: movies!)
                 
             }
                 .navigationTitle("ToDo Movies")

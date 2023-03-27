@@ -8,7 +8,7 @@
 import Foundation
 
 struct ListResponse<T: Codable>: Codable {
-    let results: [T]?
+    let results: [Movie]?
     let page, totalResults: Int?
     let totalPages: Int?
 

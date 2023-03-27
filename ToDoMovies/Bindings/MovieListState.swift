@@ -23,14 +23,14 @@ class MovieListState : ObservableObject {
     func loadMovies(with endpoint: MovieListEndpoint){
         self.movies = nil
         self.isLoading = false
-        self.movieService.fetchMovies(from: endpoint){ [weak self] result in
+        self.movieService.fetchMovies(from: endpoint){ [weak self] (Result) in
             guard let self = self else {return}
-            
+        
             self.isLoading = false
             
-            switch result {
+            switch Result {
             case.success(let reponse):
-                self.movies! = reponse.results
+                self.movies = reponse.results
             case.failure(let error):
                 self.error = error as NSError
             }

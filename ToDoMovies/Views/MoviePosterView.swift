@@ -25,8 +25,8 @@ struct MoviePosterView: View {
                     .cornerRadius(8)
                     .shadow(radius: 6)
             }
-            Text(movie.title ?? "")
-                .multilineTextAlignment(.center)
+//            Text(movie.title ?? "")
+//                .multilineTextAlignment(.center)
         }
         .frame(width: 204, height: 326)
         .onAppear{
