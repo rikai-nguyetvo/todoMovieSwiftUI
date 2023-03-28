@@ -22,7 +22,7 @@ class MovieStore: MovieService {
     private let jsonDecoder = Utils.jsonDecode
     
     func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieReponsive, MovieError>) -> ()) {
-            guard let url = URL(string: "\(baseAPIURL)/movie/\(endpoint.rawValue)") else {
+            guard let url = URL(string: "\(baseAPIURL)/movie/\(endpoint.rawValue)?api_key=\(apiKey)") else {
                 completion(.failure(.invalidEndpoint))
                 return
             }
@@ -30,7 +30,7 @@ class MovieStore: MovieService {
         }
         
     func fetchMovie(id: Int, completion: @escaping (Result<Movie, MovieError>) -> ()) {
-            guard let url = URL(string: "\(baseAPIURL)/movie/\(id)") else {
+            guard let url = URL(string: "\(baseAPIURL)/movie/\(id)?api_key=\(apiKey)") else {
                 completion(.failure(.invalidEndpoint))
                 return
             }

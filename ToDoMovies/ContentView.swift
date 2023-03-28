@@ -12,21 +12,28 @@ struct ContentView: View {
     @State private var selection: Tab = .home
     enum Tab {
           case home
+          case detail
           case movelist
       }
     var body: some View {
         TabView(selection: $selection) {
-            MovieListView(movies: movies)
+            ListViewDM()
                 .tabItem(){
                     Label("Home", systemImage: "star")
                 }
                        .tag(Tab.home)
+            
+            MovieListView(movies: movies)
+                .tabItem(){
+                    Label("List", systemImage: "star")
+                }
+                       .tag(Tab.movelist)
 
             MovieView(movieId: movies.first?.id ?? 0)
                 .tabItem(){
-                    Label("List", systemImage: "list.bullet")
+                    Label("Detail", systemImage: "list.bullet")
                 }
-                       .tag(Tab.movelist)
+                       .tag(Tab.detail)
                }
     }
 }

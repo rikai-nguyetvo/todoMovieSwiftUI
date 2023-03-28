@@ -15,40 +15,52 @@ struct ListViewDM: View {
        var body: some View {
            NavigationView {
                List {
+                   Group{
                        if nowPlayingState.movies != nil {
                            MoviePosterCarouseView(title: "Now Playing", movie: nowPlayingState.movies ?? [])
                        } else {
                            LoadingView(isLoading: self.nowPlayingState.isLoading, error: self.nowPlayingState.error) {
-                               self.nowPlayingState.loadMovies(with: .nowPlaying)
+                               self.nowPlayingState.loadMovies(with: .now_playing)
                            }
-                    }
-                                     
-                       if upcomingState.movies != nil {
-                           MovieCarouseView(title: "Upcoming", movies: upcomingState.movies ?? [])
-                       } else {
-                           LoadingView(isLoading: self.upcomingState.isLoading, error: self.upcomingState.error) {
-                               self.upcomingState.loadMovies(with: .upcoming)
-                           }
+                       }
+                   }
+                   .listRowInsets(EdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0))
+                   Group {
+                   if upcomingState.movies != nil {
+                       MovieCarouseView(title: "Upcoming", movies: upcomingState.movies ?? [])
+                   } else {
+                       LoadingView(isLoading: self.upcomingState.isLoading, error: self.upcomingState.error) {
+                           self.upcomingState.loadMovies(with: .upcoming)
+                       }
                        
                    }
-                  
+               }
+                   .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+                   Group {
                        if topRatedState.movies != nil {
                            MovieCarouseView(title: "Top Rated", movies: topRatedState.movies ?? [])
                            
                        } else {
                            LoadingView(isLoading: self.topRatedState.isLoading, error: self.topRatedState.error) {
-                               self.topRatedState.loadMovies(with: .topRate)
+                               self.topRatedState.loadMovies(with: .top_rated)
                            }
-                   } // loi ni em nghi do service em viet sai, em sua dc link tai 1 anh roi con cai ni em chua sua duoc a
-                
+                       }
+                   }
+                   .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
                    
                }
                .navigationBarTitle("The MovieDb")
+               .toolbar{
+                   Button{
+                   } label: {
+                       Label("User", systemImage: "person.crop.circle")
+                   }
+               }
            }
            .onAppear {
-               self.nowPlayingState.loadMovies(with: .nowPlaying)
+               self.nowPlayingState.loadMovies(with: .now_playing)
                self.upcomingState.loadMovies(with: .upcoming)
-               self.topRatedState.loadMovies(with: .topRate)
+               self.topRatedState.loadMovies(with: .top_rated)
            }
            
        }

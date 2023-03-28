@@ -8,7 +8,6 @@
 import Foundation
 
 struct MovieReponsive : Codable {
-//    let results : [Movie]
     let results: [Movie]
     let page, totalResults: Int
         
@@ -37,6 +36,7 @@ struct Movie :  Codable, Identifiable  {
     let genres: [MovieGenres]?
     let runtime: Int?
     let credits: MovieCreadit?
+    let videos: MovieVideoReponsive?
     
     
     enum CodingKeys: String, CodingKey {
@@ -52,9 +52,9 @@ struct Movie :  Codable, Identifiable  {
         case voteAverage = "vote_average"
         case overview
         case releaseDate = "release_date"
-        case genres
+        case genres 
         case runtime
-        case credits
+        case videos, credits
     }
     
     static private let yearFormater : DateFormatter = {
@@ -115,6 +115,8 @@ struct Movie :  Codable, Identifiable  {
         return Movie.durationFormat.string(from: TimeInterval(runtime) * 60) ?? "n/a"
     }
     
+    
+    ///____________________________
     var cast : [MovieCast]? {
         credits?.cast
     }
@@ -130,10 +132,17 @@ struct Movie :  Codable, Identifiable  {
             crew?.filter { $0.job?.lowercased() == "producer" }
         }
     var screenWriters: [MovieCrew]? {
-            crew?.filter { $0.job?.lowercased() == "story" }
+            crew?.filter { $0.job?
+                .lowercased() == "story" }
         }
-        
+    
+    var youtubeTrailer : [MovieVideo]? {
+        videos?.results.filter{
+            $0.youtubeURL != nil
+        }
     }
+        
+}
     
     
     struct MovieGenres : Codable {
@@ -146,13 +155,44 @@ struct Movie :  Codable, Identifiable  {
     }
     
     struct MovieCast: Codable, Identifiable {
-        let id: Int?
         let character : String?
+        let gender, id: Int?
         let name: String?
+        let order: Int?
+        let profilePath: String?
+
+        enum CodingKeys: String, CodingKey {
+            case character
+            case gender, id, name, order
+            case profilePath = "profile_path"
+        }
     }
     
     struct MovieCrew : Codable, Identifiable {
-        let id: Int?
-        let job : String?
-        let name: String?
+        let id : Int
+        let gender: Int?
+        let job, name: String?
+        let profilePath: String?
+
+        enum CodingKeys: String, CodingKey {
+            case gender, id, job, name
+            case profilePath = "profile_path"
+        }
     }
+
+struct MovieVideoReponsive : Codable {
+    let results: [MovieVideo]
+}
+struct MovieVideo : Codable, Identifiable{
+    let id: String
+    let key : String?
+    let name: String?
+    let site : String?
+    
+    var youtubeURL: URL? {
+        guard site == "YouTube" else {
+            return nil
+        }
+        return URL(string: "https://youtube.com/watch?v=\(key)")
+    }
+}

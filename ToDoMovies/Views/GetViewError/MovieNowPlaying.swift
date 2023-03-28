@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieNowPlaying: View {
     @State var movies = [Movie]()
-
+    
         func loadData() {
             guard let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?api_key=e9e9d8da18ae29fc430845952232787c") else {
                 return
@@ -49,9 +49,9 @@ struct MovieNowPlaying: View {
                             .cornerRadius(8)
                     }
                     VStack(alignment: .leading) {
-                        Text(movie.title ?? "HI")
+                        Text(movie.title ?? "")
                             .font(.headline)
-                        Text(movie.overview ?? "Hello")
+                        Text(movie.overview ?? "")
                             .font(.subheadline)
                             .foregroundColor(.secondary)
                             .lineLimit(2)

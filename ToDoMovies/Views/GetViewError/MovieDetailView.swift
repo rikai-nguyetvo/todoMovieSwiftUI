@@ -10,7 +10,7 @@ import SwiftUI
 struct MovieView: View {
     let movieId : Int
 
-   @ObservedObject var data = MovieDetailState()  // khong nhan Obser MovieDetail
+   @ObservedObject var data = MovieDetailState() 
     
     var body: some View {
         ZStack
@@ -33,39 +33,41 @@ struct MovieView: View {
 
 struct MovieViewListView : View {
     let movie: Movie
+    @State private var selectedTrailer : MovieVideo?
     
     var body: some View{
-        List{
+        List {
             MovieViewDetailImage(imageUrl: self.movie.backdropURL)
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+            
             HStack(spacing: 10){
                 Text(movie.genresText).font(.headline)
                 Text(".")
                 Text(movie.yearText).font(.body)
                 Text(movie.durationText).font(.body)
-                
-                 
-            }
+              }
+            
             Text(movie.overview ?? "")
                 .font(.body)
+            
             HStack{
                 if !movie.ratingText.isEmpty{
                     Text(movie.ratingText).foregroundColor(.yellow)
                 }
                 Text(movie.scoreText)
-            }
-            
+               }
+         
             HStack(alignment: .top, spacing: 4) {
                 if movie.cast != nil && movie.cast!.count > 0 {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("Starring").font(.headline)
-                        ForEach(self.movie.cast!.prefix(9)) { cast in
-                                Text(cast.name ?? "n/a")
+                        ForEach(self.movie.cast!.prefix(3)) { cast in
+                                Text(cast.name)
                                     }
                                 }
                         .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                         Spacer()
-                            
+
                             }
                 if movie.crew != nil && movie.crew!.count > 0{
                     VStack(alignment: .leading, spacing: 4){
@@ -73,29 +75,50 @@ struct MovieViewListView : View {
                             .font(.headline)
                         ForEach (self.movie.director!.prefix(2)){
                             crew in
-                            Text(crew.name ?? "")
+                            Text(crew.name)
                         }
                     }
-                    
+
                     if movie.producers != nil && movie.producers!.count>0 {
                         Text("Producer(s)").font(.headline)
                                                         .padding(.top)
                                                     ForEach(self.movie.producers!.prefix(2)) { crew in
-                                                        Text(crew.name!)
+                                                        Text(crew.name)
                                                     }
                     }
                     if movie.screenWriters != nil && movie.screenWriters!.count > 0 {
                                                 Text("Screenwriter(s)").font(.headline)
                                                     .padding(.top)
                                                 ForEach(self.movie.screenWriters!.prefix(2)) { crew in
-                                                    Text(crew.name!)
+                                                    Text(crew.name)
                                                 }
                                             }
-                        
+
                                     }
-            
+
             }
             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+           if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0 {
+                Text("Trailer")
+                    .font(.headline)
+                ForEach(movie.youtubeTrailer!){
+                    trailer in
+                    Button(action: {self.selectedTrailer = trailer}){
+                        HStack{
+                            Text(trailer.name ?? "")
+                            Spacer()
+                            Image(systemName: "play_circle_fill")
+                                .foregroundColor(.blue)
+                        }
+                    }
+                    
+                }
+                .sheet(item: self.$selectedTrailer){
+                    trailer in
+                    SafariView(url: trailer.youtubeURL!)
+                }
+            }
+            
         }
     }
     

@@ -16,15 +16,15 @@ protocol MovieService{
 }
 
 enum MovieListEndpoint: String, CaseIterable{
-    case nowPlaying = "now_playing"
+    case now_playing
     case upcoming
-    case topRate = "top_rated"
+    case top_rated
     
     var description : String {
         switch self{
-        case .nowPlaying: return "Now Playing"
+        case .now_playing: return "Now Playing"
         case .upcoming: return "UpComing"
-        case .topRate: return "Top Rate"
+        case .top_rated: return "Top Rate"
         }
     }
 }
