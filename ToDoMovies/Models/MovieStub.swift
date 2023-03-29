@@ -10,7 +10,10 @@ extension Movie {
     static var stubbedMovie: Movie {
         return stubbedMovies.results!.first!
     }
-
+    
+    static var detailMovie: ListResponse<Movie> {
+        return load("movie_info.json")
+    }
 }
 
 

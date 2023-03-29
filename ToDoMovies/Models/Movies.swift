@@ -116,25 +116,23 @@ struct Movie :  Codable, Identifiable  {
     }
     
     
-    ///____________________________
     var cast : [MovieCast]? {
         credits?.cast
     }
     
-    var crew :  [MovieCrew]?{
+    var crew : [MovieCrew]? {
         credits?.crew
     }
     var director : [MovieCrew]?{
-        crew?.filter { $0.job?.lowercased() == "director"}
+        crew?.filter { $0.job.lowercased() == "director"}
         
     }
     var producers: [MovieCrew]? {
-            crew?.filter { $0.job?.lowercased() == "producer" }
-        }
+        crew?.filter { $0.job.lowercased() == "producer" }
+    }
     var screenWriters: [MovieCrew]? {
-            crew?.filter { $0.job?
-                .lowercased() == "story" }
-        }
+        crew?.filter { $0.job.lowercased() == "story" }
+    }
     
     var youtubeTrailer : [MovieVideo]? {
         videos?.results.filter{
@@ -155,29 +153,15 @@ struct Movie :  Codable, Identifiable  {
     }
     
     struct MovieCast: Codable, Identifiable {
-        let character : String?
-        let gender, id: Int?
-        let name: String?
-        let order: Int?
-        let profilePath: String?
-
-        enum CodingKeys: String, CodingKey {
-            case character
-            case gender, id, name, order
-            case profilePath = "profile_path"
-        }
+        let character : String
+        let id: Int
+        let name: String
     }
     
     struct MovieCrew : Codable, Identifiable {
         let id : Int
-        let gender: Int?
-        let job, name: String?
-        let profilePath: String?
-
-        enum CodingKeys: String, CodingKey {
-            case gender, id, job, name
-            case profilePath = "profile_path"
-        }
+        let name: String
+        let job: String
     }
 
 struct MovieVideoReponsive : Codable {

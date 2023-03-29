@@ -19,19 +19,19 @@ struct ContentView: View {
         TabView(selection: $selection) {
             ListViewDM()
                 .tabItem(){
-                    Label("Home", systemImage: "star")
+                    Label("Home", systemImage: "list.bullet")
                 }
                        .tag(Tab.home)
             
             MovieListView(movies: movies)
                 .tabItem(){
-                    Label("List", systemImage: "star")
+                    Label("Watch", systemImage: "tv")
                 }
                        .tag(Tab.movelist)
 
-            MovieView(movieId: movies.first?.id ?? 0)
+            MovieSearchView()
                 .tabItem(){
-                    Label("Detail", systemImage: "list.bullet")
+                    Label("Detail", systemImage: "star")
                 }
                        .tag(Tab.detail)
                }

@@ -11,6 +11,7 @@ import Combine
 final class MoviesModel: ObservableObject{
     
   @Published var movie: [Movie] = load("movie_list.json")
+  @Published var detail: [Movie] = load("movie_info.json")
     
 }
 
