@@ -13,7 +13,7 @@ struct ContentView: View {
     enum Tab {
           case home
           case detail
-          case movelist
+
       }
     var body: some View {
         TabView(selection: $selection) {
@@ -23,15 +23,11 @@ struct ContentView: View {
                 }
                        .tag(Tab.home)
             
-            MovieListView(movies: movies)
-                .tabItem(){
-                    Label("Watch", systemImage: "tv")
-                }
-                       .tag(Tab.movelist)
+        
 
             MovieSearchView()
                 .tabItem(){
-                    Label("Detail", systemImage: "star")
+                    Label("Search", systemImage: "magnifyingglass")
                 }
                        .tag(Tab.detail)
                }

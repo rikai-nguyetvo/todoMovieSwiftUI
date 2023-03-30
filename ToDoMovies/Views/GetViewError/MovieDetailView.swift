@@ -33,7 +33,7 @@ struct MovieView: View {
 
 struct MovieViewListView : View {
     let movie: Movie
-    @State private var selectedTrailer : MovieVideo?
+    @State private var selectedTrailer : MovieVideos?
     
     var body: some View{
         List {
@@ -56,59 +56,9 @@ struct MovieViewListView : View {
                 }
                 Text(movie.scoreText)
                }
-         
-            HStack(alignment: .top, spacing: 4) {
-                
-                
-                VStack {
-                    Text("Starring")
-                        .font(.headline)
-                    Text("Hana")
-                    Text("John")
-                    Text("Jack")
-                }
-                
-                if movie.cast != nil && movie.cast!.count > 0 {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Starring").font(.headline)
-                        ForEach(self.movie.cast!.prefix(3)) { cast in
-                                Text(cast.name)
-                                    }
-                                }
-                        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-                        Spacer()
-
-                    }
-//                if movie.crew != nil && movie.crew!.count > 0{
-//                    VStack(alignment: .leading, spacing: 4){
-//                        Text("Director")
-//                            .font(.headline)
-//                        ForEach (self.movie.director!.prefix(2)){
-//                            crew in
-//                            Text(crew.name ?? "")
-//                        }
-//                    }
-//
-//                    if movie.producers != nil && movie.producers!.count>0 {
-//                        Text("Producer(s)").font(.headline)
-//                                                        .padding(.top)
-//                                                    ForEach(self.movie.producers!.prefix(2)) { crew in
-//                                                        Text(crew.name ?? "")
-//                                                    }
-//                    }
-//                    if movie.screenWriters != nil && movie.screenWriters!.count > 0 {
-//                                                Text("Screenwriter(s)").font(.headline)
-//                                                    .padding(.top)
-//                                                ForEach(self.movie.screenWriters!.prefix(2)) { crew in
-//                                                    Text(crew.name ?? "")
-//                                                }
-//                                            }
-//
-//                                    }
-
-            }
-            .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
-           if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0 {
+            
+            
+            if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0{
                 Text("Trailer")
                     .font(.headline)
                 ForEach(movie.youtubeTrailer!){

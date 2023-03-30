@@ -11,7 +11,7 @@ extension Movie {
         return stubbedMovies.results!.first!
     }
     
-    static var detailMovie: ListResponse<Movie> {
+    static var detailMovie: MovieReponsive {
         return load("movie_info.json")
     }
 }

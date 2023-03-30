@@ -9,7 +9,7 @@ import SwiftUI
 
 
 class MovieServices {
-
+    
     let key = "e9e9d8da18ae29fc430845952232787c"
     
     func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieReponsive, Error>) -> Void){
@@ -47,6 +47,10 @@ class MovieServices {
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
                 return
             }
             
@@ -90,30 +94,29 @@ class MovieServices {
         }.resume()
     }
     
-//    func fetchCredits(id: Int,completion: @escaping (Result<Movie, Error>) -> Void)
-//    {
-//       let urlString = "https://api.themoviedb.org/3/movie/\(id)/credits?api_key=\(key)"
-//        guard let url = URL(string: urlString) else {
-//            return
-//        }
-//
-//        URLSession.shared.dataTask(with: url) { data, response, error in
-//            if let error = error {
-//                completion(.failure(error))
-//                return
-//            }
-//
-//            guard let data = data else {
-//                completion(.failure(NSError(domain: "", code: -1, userInfo: nil)))
-//                return
-//            }
-//
-//            do {
-//                let movie = try JSONDecoder().decode(Movie.self, from: data)
-//                completion(.success(movie))
-//            } catch {
-//                completion(.failure(error))
-//            }
-//        }.resume()
+    func fetchMovieTrailers(movieID: Int, completion: @escaping (Result<MovieVideoReponsives, Error>) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=\(key)")!
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let httpResponse = response as? HTTPURLResponse,
+                  (200..<300).contains(httpResponse.statusCode),
+                  let data = data
+            else {
+                completion(.failure(NSError(domain: "", code: 0, userInfo: nil)))
+                return
+            }
+            
+            do {
+                let trailersResponse = try JSONDecoder().decode(MovieVideoReponsives.self, from: data)
+                completion(.success(trailersResponse))
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
+    }
 }
 
