@@ -40,6 +40,7 @@
 		A562918F29D4119300C3E0B1 /* SearchBarState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562918E29D4119300C3E0B1 /* SearchBarState.swift */; };
 		A562919129D53BDA00C3E0B1 /* MovieTraillerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562919029D53BDA00C3E0B1 /* MovieTraillerView.swift */; };
 		A562919529D58F9800C3E0B1 /* MoviePlayVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562919429D58F9800C3E0B1 /* MoviePlayVideo.swift */; };
+		A562919729D6BCCD00C3E0B1 /* MovieTrailerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A562919629D6BCCD00C3E0B1 /* MovieTrailerState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,7 @@
 		A562918E29D4119300C3E0B1 /* SearchBarState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarState.swift; sourceTree = "<group>"; };
 		A562919029D53BDA00C3E0B1 /* MovieTraillerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTraillerView.swift; sourceTree = "<group>"; };
 		A562919429D58F9800C3E0B1 /* MoviePlayVideo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePlayVideo.swift; sourceTree = "<group>"; };
+		A562919629D6BCCD00C3E0B1 /* MovieTrailerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailerState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				A562916A29CCA3A400C3E0B1 /* MovieListState.swift */,
 				A562917229CD9D8300C3E0B1 /* MovieDetailState.swift */,
 				A562918E29D4119300C3E0B1 /* SearchBarState.swift */,
+				A562919629D6BCCD00C3E0B1 /* MovieTrailerState.swift */,
 			);
 			path = Bindings;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				A562914729C9C21800C3E0B1 /* MovieItems.swift in Sources */,
 				A562915829CB661800C3E0B1 /* MovieCarouseView.swift in Sources */,
 				A562916729CC6CA200C3E0B1 /* MoviePosterCarouseView.swift in Sources */,
+				A562919729D6BCCD00C3E0B1 /* MovieTrailerState.swift in Sources */,
 				A562912F29C98D0600C3E0B1 /* ContentView.swift in Sources */,
 				A562912D29C98D0600C3E0B1 /* ToDoMoviesApp.swift in Sources */,
 				A562914029C99EDB00C3E0B1 /* MovieService.swift in Sources */,

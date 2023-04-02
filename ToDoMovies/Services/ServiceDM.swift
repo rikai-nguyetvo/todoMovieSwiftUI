@@ -94,8 +94,8 @@ class MovieServices {
         }.resume()
     }
     
-    func fetchMovieTrailers(movieID: Int, completion: @escaping (Result<MovieVideoReponsives, Error>) -> Void) {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieID)/videos?api_key=\(key)")!
+    func fetchMovieTrailers(id: Int, completion: @escaping (Result<MovieVideoReponsives, Error>) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/videos?api_key=\(key)")!
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 completion(.failure(error))

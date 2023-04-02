@@ -114,11 +114,16 @@ struct Movie :  Codable, Identifiable  {
         return Movie.durationFormat.string(from: TimeInterval(runtime) * 60) ?? "n/a"
     }
     
-    var youtubeTrailer : [MovieVideos]? {
-        return  videos?.results.filter{
-            $0.youtubeURL != nil
-        }
+    var trailer :URL {
+        let keyId = videos?.results.first?.key
+        return URL(string: "https://www.youtube.com/watch?v=\(keyId)")!
     }
+    
+//    var youtubeTrailer : [MovieVideos]? {
+//        return  videos?.results.filter{
+//            $0.youtubeURL != nil
+//        }
+//    }
     
 }
 
@@ -163,6 +168,6 @@ struct MovieVideos: Codable, Identifiable {
         case size, type
     }
     var youtubeURL: URL? {
-        return URL(string: "https://www.youtube.com/watch?v=F95Fk255I4M")
+        return URL(string: "https://www.youtube.com/watch?v=\(key)")!
     }
 }

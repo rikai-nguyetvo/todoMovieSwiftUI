@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SafariServices
 
 struct MovieView: View {
     let movieId : Int
@@ -33,6 +34,7 @@ struct MovieView: View {
 
 struct MovieViewListView : View {
     let movie: Movie
+    @ObservedObject var watchTL  = MovieTrailerState()
     @State private var selectedTrailer : MovieVideos?
     
     var body: some View{
@@ -58,25 +60,39 @@ struct MovieViewListView : View {
                }
             
             
-            if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0{
-                Text("Trailer")
-                    .font(.headline)
-                ForEach(movie.youtubeTrailer!){
-                    trailer in
-                    Button(action: {self.selectedTrailer = trailer}){
-                        HStack{
-                            Text(trailer.name ?? "")
-                            Spacer()
-                            Image(systemName: "play_circle_fill")
-                                .foregroundColor(.blue)
-                        }
-                    }
-
-                }
-                .sheet(item: self.$selectedTrailer){
-                    trailer in
-                    SafariView(url: trailer.youtubeURL!)
-                }
+//            if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0{
+//                Text("Trailer")
+//                    .font(.headline)
+//                ForEach(movie.youtubeTrailer!){
+//                    trailer in
+//                    Button(action: {self.selectedTrailer = trailer}){
+//                        HStack{
+//                            Text(trailer.name ?? "")
+//                            Spacer()
+//                            Image(systemName: "play_circle_fill")
+//                                .foregroundColor(.blue)
+//                        }
+//                    }
+//
+//                }
+//                .sheet(item: self.$selectedTrailer){
+//                    trailer in
+//                    SafariView(url: trailer.youtubeURL!)
+//                }
+//            }
+            Button("Watch Trailer") {
+                let youtubeURL = URL(string: "https://www.youtube.com/watch?v=vOUVVDWdXbo")!
+                let safariViewController = SFSafariViewController(url: youtubeURL)
+                UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
+            }
+            
+           
+            Button("Watch Trailer2") {
+                let keys = watchTL.movie?.first?.key
+                    let youtubeURLs = URL(string: "https://www.youtube.com/watch?v=\(keys)")!
+                let safariViewControllers = SFSafariViewController(url: youtubeURLs ?? movie.posterURL)
+                    UIApplication.shared.windows.first?.rootViewController?.present(safariViewControllers, animated: true, completion: nil)
+                
             }
             
         }
