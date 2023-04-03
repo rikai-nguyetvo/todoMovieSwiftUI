@@ -35,7 +35,7 @@ struct MovieView: View {
 struct MovieViewListView : View {
     let movie: Movie
     @ObservedObject var watchTL  = MovieTrailerState()
-    @State private var selectedTrailer : MovieVideos?
+    @State private var selectedTrailer : Videos?
     
     var body: some View{
         List {
@@ -47,7 +47,7 @@ struct MovieViewListView : View {
                 Text(".")
                 Text(movie.yearText).font(.body)
                 Text(movie.durationText).font(.body)
-              }
+            }
             
             Text(movie.overview ?? "")
                 .font(.body)
@@ -57,45 +57,85 @@ struct MovieViewListView : View {
                     Text(movie.ratingText).foregroundColor(.yellow)
                 }
                 Text(movie.scoreText)
-               }
-            
-            
-//            if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0{
-//                Text("Trailer")
-//                    .font(.headline)
-//                ForEach(movie.youtubeTrailer!){
-//                    trailer in
-//                    Button(action: {self.selectedTrailer = trailer}){
-//                        HStack{
-//                            Text(trailer.name ?? "")
-//                            Spacer()
-//                            Image(systemName: "play_circle_fill")
-//                                .foregroundColor(.blue)
-//                        }
-//                    }
-//
-//                }
-//                .sheet(item: self.$selectedTrailer){
-//                    trailer in
-//                    SafariView(url: trailer.youtubeURL!)
-//                }
-//            }
-            Button("Watch Trailer") {
-                let youtubeURL = URL(string: "https://www.youtube.com/watch?v=vOUVVDWdXbo")!
-                let safariViewController = SFSafariViewController(url: youtubeURL)
-                UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
             }
             
            
-            Button("Watch Trailer2") {
-                let keys = watchTL.movie?.first?.key
-                    let youtubeURLs = URL(string: "https://www.youtube.com/watch?v=\(keys)")!
-                let safariViewControllers = SFSafariViewController(url: youtubeURLs ?? movie.posterURL)
-                    UIApplication.shared.windows.first?.rootViewController?.present(safariViewControllers, animated: true, completion: nil)
-                
-            }
+            HStack(alignment: .top, spacing: 4) {
+                           if movie.cast != nil && movie.cast!.count > 0 {
+                               VStack(alignment: .leading, spacing: 4) {
+                                   Text("Starring").font(.headline)
+                                   ForEach(self.movie.cast!.prefix(9)) { cast in
+                                       Text(cast.name)
+                                   }
+                               }
+                               .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                               Spacer()
+                               
+                           }
+                           
+                           if movie.crew != nil && movie.crew!.count > 0 {
+                               VStack(alignment: .leading, spacing: 4) {
+                                   if movie.directors != nil && movie.directors!.count > 0 {
+                                       Text("Director(s)").font(.headline)
+                                       ForEach(self.movie.directors!.prefix(2)) { crew in
+                                           Text(crew.name)
+                                       }
+                                   }
+                                   
+                                   if movie.producers != nil && movie.producers!.count > 0 {
+                                       Text("Producer(s)").font(.headline)
+                                           .padding(.top)
+                                       ForEach(self.movie.producers!.prefix(2)) { crew in
+                                           Text(crew.name)
+                                       }
+                                   }
+                                   
+                                   if movie.screenWriters != nil && movie.screenWriters!.count > 0 {
+                                       Text("Screenwriter(s)").font(.headline)
+                                           .padding(.top)
+                                       ForEach(self.movie.screenWriters!.prefix(2)) { crew in
+                                           Text(crew.name)
+                                       }
+                                   }
+                               }
+                               .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                           }
+                       }
             
-        }
+            //            if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0{
+            //                Text("Trailer")
+            //                    .font(.headline)
+            //                ForEach(movie.youtubeTrailer!){
+            //                    trailer in
+            //                    Button(action: {self.selectedTrailer = trailer}){
+            //                        HStack{
+            //                            Text(trailer.name ?? "")
+            //                            Spacer()
+            //                            Image(systemName: "play_circle_fill")
+            //                                .foregroundColor(.blue)
+            //                        }
+            //                    }
+            //
+            //                }
+            //                .sheet(item: self.$selectedTrailer){
+            //                    trailer in
+            //                    SafariView(url: trailer.youtubeURL!)
+            //                }
+            //            }
+            Button("Watch Trailer") {
+                let youtubeURL = URL(string: "https://www.youtube.com/watch?v=vOUVVDWdXbo")!
+                let safariViewController = SFSafariViewController(url: movie.videoTrailer)
+                UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
+            }
+          
+//                ForEach((movie.trailer?.prefix(9))!){
+//                    item in
+//                    let safariViewController = SFSafariViewController(url: item.youtubeURL)
+//                    UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
+//                }
+            }
+         
+       
     }
     
 }

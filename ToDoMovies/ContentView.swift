@@ -25,7 +25,7 @@ struct ContentView: View {
             
         
 
-            MovieSearchView()
+            MovieSearchView(movie: Movie.stubbedMovie)
                 .tabItem(){
                     Label("Search", systemImage: "magnifyingglass")
                 }

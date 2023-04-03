@@ -11,7 +11,7 @@ import Foundation
 class MovieTrailerState : ObservableObject{
     
     private let movieService: MovieServices
-    @Published var movie: [MovieVideos]?
+    @Published var movie: [Movie]?
     @Published var isLoading: Bool = false
     @Published var error: NSError?
     

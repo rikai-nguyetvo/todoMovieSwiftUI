@@ -10,6 +10,7 @@ import SwiftUI
 struct MovieSearchView: View {
     
     @ObservedObject var searchMovie = SearchBarState()
+    let movie : Movie
     
     var body: some View {
         NavigationView {
@@ -23,9 +24,14 @@ struct MovieSearchView: View {
                     ForEach(self.searchMovie.movies!){
                         movie in
                         NavigationLink(destination: MovieView(movieId: movie.id!)){
-                            VStack(alignment: .leading){
-                                Text(movie.title ?? "")
-                                Text(movie.yearText)
+                            
+                            HStack(alignment: .top, spacing: 5) {
+                                MovieViewSearchImage(imageUrl: movie.posterURL)
+                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                                VStack(alignment: .leading){
+                                    Text(movie.title ?? "")
+                                    Text(movie.ratingText).foregroundColor(.yellow)
+                                }
                             }
                         }
                     }
@@ -40,9 +46,33 @@ struct MovieSearchView: View {
         
     }
 }
+struct MovieViewSearchImage : View{
+    
+    @ObservedObject var imageLoader = ImageLoader()
+    let imageUrl : URL
+    
+    var body: some View{
+        ZStack{
+            
+                Rectangle()
+                    .fill(.gray.opacity(0.6))
+                    .frame(width: 70, height: 50)
+            
+            if self.imageLoader.image != nil {
+                Image(uiImage: self.imageLoader.image!)
+                    .resizable()
+                    .frame(width: 70, height: 50)
+            }
+        }
+        .aspectRatio(12/9, contentMode: .fit)
+        .onAppear{
+            self.imageLoader.loadImage(with: self.imageUrl)
+        }
+    }
+}
 
 struct MovieSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieSearchView()
+        MovieSearchView(movie: Movie.stubbedMovie)
     }
 }

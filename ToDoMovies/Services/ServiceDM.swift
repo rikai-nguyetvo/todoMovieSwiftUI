@@ -94,7 +94,7 @@ class MovieServices {
         }.resume()
     }
     
-    func fetchMovieTrailers(id: Int, completion: @escaping (Result<MovieVideoReponsives, Error>) -> Void) {
+    func fetchMovieTrailers(id: Int, completion: @escaping (Result<MovieReponsive, Error>) -> Void) {
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/videos?api_key=\(key)")!
         URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
@@ -111,7 +111,7 @@ class MovieServices {
             }
             
             do {
-                let trailersResponse = try JSONDecoder().decode(MovieVideoReponsives.self, from: data)
+                let trailersResponse = try JSONDecoder().decode(MovieReponsive.self, from: data)
                 completion(.success(trailersResponse))
             } catch {
                 completion(.failure(error))

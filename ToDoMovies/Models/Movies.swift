@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct MovieReponsive : Codable {
     let results: [Movie]
@@ -34,8 +35,8 @@ struct Movie :  Codable, Identifiable  {
     let overview, releaseDate: String?
     let genres: [MovieGenres]?
     let runtime: Int?
-    let credits: MovieCreadit?
-    let videos: MovieVideoReponsives?
+    let credits: Credits?
+    let videos: Videos?
     
     
     enum CodingKeys: String, CodingKey {
@@ -114,60 +115,114 @@ struct Movie :  Codable, Identifiable  {
         return Movie.durationFormat.string(from: TimeInterval(runtime) * 60) ?? "n/a"
     }
     
-    var trailer :URL {
-        let keyId = videos?.results.first?.key
-        return URL(string: "https://www.youtube.com/watch?v=\(keyId)")!
+    var trailer : [Video]? {
+        return videos?.results
     }
     
-//    var youtubeTrailer : [MovieVideos]? {
-//        return  videos?.results.filter{
-//            $0.youtubeURL != nil
-//        }
-//    }
+    var videoTrailer: URL{
+        return trailer?.first!.youtubeURL ?? URL(string: "https://www.youtube.com/watch?v=vOUVVDWdXbo")!
+    }
+    
+    //    var youtubeTrailer : [MovieVideos]? {
+    //        return  videos?.results.filter{
+    //            $0.youtubeURL != nil
+    //        }
+    //    }
+    
+    var cast : [Cast]? {
+        credits?.cast
+    }
+    var crew : [Crew]? {
+        credits?.crew
+    }
+    
+    var directors: [Crew]? {
+            crew?.filter { $0.job.lowercased() == "director" }
+        }
+        
+        var producers: [Crew]? {
+            crew?.filter { $0.job.lowercased() == "producer" }
+        }
+        
+        var screenWriters: [Crew]? {
+            crew?.filter { $0.job.lowercased() == "story" }
+        }
     
 }
 
     
-    struct MovieGenres : Codable {
-        let name : String?
-    }
-    
-    struct MovieCreadit: Codable {
-        let cast : [MovieCast]
-        let crew : [MovieCrew]
-    }
-    
-    struct MovieCast: Codable, Identifiable {
-        let character : String
-        let id: Int
-        let name: String
-    }
-    
-    struct MovieCrew : Codable, Identifiable {
-        let id : Int
-        let name: String
-        let job: String
-    }
-
-struct MovieVideoReponsives: Codable {
-    let results: [MovieVideos]
+struct MovieGenres : Codable {
+    let name : String?
 }
 
-struct MovieVideos: Codable, Identifiable {
-    let id: String
-    let key : String?
-    let name, site: String?
-    let size: Int?
-    let type: String?
+struct Credits: Codable {
+    let cast: [Cast]
+    let crew: [Crew]
+}
+
+struct Cast: Codable, Identifiable{
+    let castID: Int
+    let character, creditID: String
+    let gender, id: Int
+    let name: String
+    let order: Int
+    let profilePath: String?
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case key
-        case name
-        case site
-        case size, type
+        case castID = "cast_id"
+        case character
+        case creditID = "credit_id"
+        case gender, id, name, order
+        case profilePath = "profile_path"
     }
-    var youtubeURL: URL? {
+}
+
+
+struct Crew: Codable, Identifiable {
+    let creditID, department: String
+    let gender, id: Int
+    let job, name: String
+    let profilePath: String?
+
+    enum CodingKeys: String, CodingKey {
+        case creditID = "credit_id"
+        case department, gender, id, job, name
+        case profilePath = "profile_path"
+    }
+}
+struct Videos: Codable {
+    let results: [Video]
+}
+
+struct Video: Codable, Identifiable {
+    let id: String
+    let key: String
+    let name: String
+    
+    var youtubeURL: URL {
         return URL(string: "https://www.youtube.com/watch?v=\(key)")!
     }
 }
+
+//struct MovieVideoReponsives: Codable {
+//    let results: [MovieVideos]
+//}
+//
+//struct MovieVideos: Codable, Identifiable {
+//    let id: String
+//    let key : String?
+//    let name, site: String?
+//    let size: Int?
+//    let type: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case id
+//        case key
+//        case name
+//        case site
+//        case size, type
+//    }
+//    var youtubeURL: URL? {
+//        return URL(string: "https://www.youtube.com/watch?v=\(key)")!
+//    }
+//}

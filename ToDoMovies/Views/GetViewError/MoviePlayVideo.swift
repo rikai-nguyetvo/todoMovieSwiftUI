@@ -15,6 +15,7 @@ struct MoviePlayVideo: View {
         Group {
 //            if trailerViewModel.videoKey != nil {
                 Button("Watch Trailer") {
+                
 //                    guard let videoKey = trailerViewModel.videoKey else { return }
                     let youtubeURL = URL(string: "https://www.youtube.com/watch?v=vOUVVDWdXbo")!
                     let safariViewController = SFSafariViewController(url: youtubeURL)
