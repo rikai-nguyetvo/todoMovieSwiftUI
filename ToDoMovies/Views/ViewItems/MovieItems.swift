@@ -27,8 +27,13 @@ struct MovieItems: View {
             .cornerRadius(8)
             .shadow(radius: 6)
            
-            Text(movie.title ?? "")
+            Text(movie.title ?? "").font(.headline)
+                .multilineTextAlignment(.center)
+                .padding(.leading)
+                
+                
         }
+        .lineLimit(1)
         .onAppear{
             self.imageLoader.loadImage(with: self.movie.backdropURL)
 

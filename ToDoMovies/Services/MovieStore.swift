@@ -6,8 +6,12 @@
 //
 
 import Foundation
+import Combine
+
 
 class MovieStore: MovieService {
+   
+    
     
     static let shared = MovieStore()
     private init() {}
@@ -18,25 +22,25 @@ class MovieStore: MovieService {
     private let jsonDecoder = Utils.jsonDecode
     
     func fetchMovies(from endpoint: MovieListEndpoint, completion: @escaping (Result<MovieReponsive, MovieError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIURL)/movie/\(endpoint.rawValue)") else {
-            completion(.failure(.invalidEndpoint))
-            return
+            guard let url = URL(string: "\(baseAPIURL)/movie/\(endpoint.rawValue)?api_key=\(apiKey)") else {
+                completion(.failure(.invalidEndpoint))
+                return
+            }
+            self.loadURLAndDecode(url: url, completion: completion)
         }
-        self.loadURLAndDecode(url: url, completion: completion)
-    }
-    
+        
     func fetchMovie(id: Int, completion: @escaping (Result<Movie, MovieError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIURL)/movie/\(id)") else {
-            completion(.failure(.invalidEndpoint))
-            return
+            guard let url = URL(string: "\(baseAPIURL)/movie/\(id)?api_key=\(apiKey)") else {
+                completion(.failure(.invalidEndpoint))
+                return
+            }
+            self.loadURLAndDecode(url: url, params: [
+                "append_to_response": "videos,credits"
+            ], completion: completion)
         }
-        self.loadURLAndDecode(url: url, params: [
-            "append_to_response": "videos,credits"
-        ], completion: completion)
-    }
     
     func searchMovie(query: String, completion: @escaping (Result<MovieReponsive, MovieError>) -> ()) {
-        guard let url = URL(string: "\(baseAPIURL)/search/movie") else {
+        guard let url = URL(string: "\(baseAPIURL)/search/movie?api_key=\(apiKey)&query=\(query)") else {
             completion(.failure(.invalidEndpoint))
             return
         }
@@ -98,7 +102,6 @@ class MovieStore: MovieService {
             completion(result)
         }
     }
-    
-    
+  
     
 }

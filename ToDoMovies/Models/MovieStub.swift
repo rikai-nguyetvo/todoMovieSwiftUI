@@ -8,10 +8,12 @@ extension Movie {
     }
 
     static var stubbedMovie: Movie {
-//        return Movie(id: 338762, title: "Bloodshot", backdropPath: "/ocUrMYbdjknu2TwzMHKT9PBBQRw.jpg", posterPath: "", overview: "ffffdfbdz", voteAverage: 0, voteAcount: 0, runTime: 0)
         return stubbedMovies.results!.first!
     }
-
+    
+    static var detailMovie: MovieReponsive {
+        return load("movie_info.json")
+    }
 }
 
 

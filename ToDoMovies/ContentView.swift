@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+   
     var body: some View {
-        VStack {
-           Text("Hello, world!")
-        }
-        .padding()
+        LoginView(movies: Movie.stubbedMovies.results ?? [])
     }
 }
 
