@@ -6,12 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct ToDoMoviesApp: App {
+    init(){
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(movies: Movie.stubbedMovies.results!)
+            ContentView()
         }
     }
 }

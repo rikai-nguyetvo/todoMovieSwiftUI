@@ -10,7 +10,7 @@ struct ListViewDM: View {
     @ObservedObject  var nowPlayingState = MovieListState()
     @ObservedObject  var upcomingState = MovieListState()
     @ObservedObject var topRatedState = MovieListState()
-      
+    @State private var showingProfile = false
        
        var body: some View {
            NavigationView {
@@ -52,10 +52,15 @@ struct ListViewDM: View {
                .navigationBarTitle("To Do Movie")
                .toolbar{
                    Button{
+                       showingProfile.toggle()
                    } label: {
                        Label("User", systemImage: "person.crop.circle")
                    }
                }
+               .sheet(isPresented: $showingProfile) {
+                               InforView()
+                                
+                           }
            }
            .onAppear {
                self.nowPlayingState.loadMovies(with: .now_playing)

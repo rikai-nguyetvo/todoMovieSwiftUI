@@ -102,37 +102,12 @@ struct MovieViewListView : View {
                            }
                        }
             
-            //            if movie.youtubeTrailer != nil && movie.youtubeTrailer!.count > 0{
-            //                Text("Trailer")
-            //                    .font(.headline)
-            //                ForEach(movie.youtubeTrailer!){
-            //                    trailer in
-            //                    Button(action: {self.selectedTrailer = trailer}){
-            //                        HStack{
-            //                            Text(trailer.name ?? "")
-            //                            Spacer()
-            //                            Image(systemName: "play_circle_fill")
-            //                                .foregroundColor(.blue)
-            //                        }
-            //                    }
-            //
-            //                }
-            //                .sheet(item: self.$selectedTrailer){
-            //                    trailer in
-            //                    SafariView(url: trailer.youtubeURL!)
-            //                }
-            //            }
-            Button("Watch Trailer") {
+             Button("Watch Trailer") {
                 let youtubeURL = URL(string: "https://www.youtube.com/watch?v=vOUVVDWdXbo")!
                 let safariViewController = SFSafariViewController(url: movie.videoTrailer)
                 UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
             }
           
-//                ForEach((movie.trailer?.prefix(9))!){
-//                    item in
-//                    let safariViewController = SFSafariViewController(url: item.youtubeURL)
-//                    UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
-//                }
             }
          
        
