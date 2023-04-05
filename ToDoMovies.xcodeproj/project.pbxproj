@@ -45,6 +45,11 @@
 		A5880B1329DC1B7A0098DCDB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5880B1229DC1B7A0098DCDB /* GoogleService-Info.plist */; };
 		A5880B1629DC26F20098DCDB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A5880B1529DC26F20098DCDB /* FirebaseAuth */; };
 		A5880B1829DC26F20098DCDB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A5880B1729DC26F20098DCDB /* FirebaseFirestore */; };
+		A58D814E29DD79240091F501 /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D814D29DD79240091F501 /* LogView.swift */; };
+		A58D815029DD79510091F501 /* LoginRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D814F29DD79510091F501 /* LoginRegister.swift */; };
+		A58D815229DD7C230091F501 /* Auththen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D815129DD7C230091F501 /* Auththen.swift */; };
+		A58D815429DD7E360091F501 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D815329DD7E360091F501 /* String.swift */; };
+		A58D815629DD7E8B0091F501 /* HomeLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58D815529DD7E8B0091F501 /* HomeLogView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +92,11 @@
 		A5880B0C29DBFCBF0098DCDB /* HomeScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenView.swift; sourceTree = "<group>"; };
 		A5880B0E29DBFF960098DCDB /* InforView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InforView.swift; sourceTree = "<group>"; };
 		A5880B1229DC1B7A0098DCDB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A58D814D29DD79240091F501 /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		A58D814F29DD79510091F501 /* LoginRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegister.swift; sourceTree = "<group>"; };
+		A58D815129DD7C230091F501 /* Auththen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Auththen.swift; sourceTree = "<group>"; };
+		A58D815329DD7E360091F501 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		A58D815529DD7E8B0091F501 /* HomeLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLogView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +180,7 @@
 		A562914529C9C1DD00C3E0B1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A58D814C29DD78F70091F501 /* Login */,
 				A562918529D29F9C00C3E0B1 /* ViewCarouse */,
 				A562918429D29F8400C3E0B1 /* ViewItems */,
 				A562918329D29F5B00C3E0B1 /* Component */,
@@ -178,7 +189,6 @@
 				A562917A29D137AF00C3E0B1 /* MoviesListView.swift */,
 				A562918A29D2DFE500C3E0B1 /* MovieSearchView.swift */,
 				A5880B0C29DBFCBF0098DCDB /* HomeScreenView.swift */,
-				A5880B0A29DBCC6E0098DCDB /* LoginView.swift */,
 				A5880B0E29DBFF960098DCDB /* InforView.swift */,
 			);
 			path = Views;
@@ -209,6 +219,7 @@
 		A562917E29D168B400C3E0B1 /* GetViewError */ = {
 			isa = PBXGroup;
 			children = (
+				A5880B0A29DBCC6E0098DCDB /* LoginView.swift */,
 				A562917C29D13E9B00C3E0B1 /* MovieDetailView.swift */,
 				A562919029D53BDA00C3E0B1 /* MovieTraillerView.swift */,
 			);
@@ -241,6 +252,18 @@
 				A562916629CC6CA200C3E0B1 /* MoviePosterCarouseView.swift */,
 			);
 			path = ViewCarouse;
+			sourceTree = "<group>";
+		};
+		A58D814C29DD78F70091F501 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A58D814D29DD79240091F501 /* LogView.swift */,
+				A58D814F29DD79510091F501 /* LoginRegister.swift */,
+				A58D815129DD7C230091F501 /* Auththen.swift */,
+				A58D815329DD7E360091F501 /* String.swift */,
+				A58D815529DD7E8B0091F501 /* HomeLogView.swift */,
+			);
+			name = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -329,7 +352,9 @@
 				A562917329CD9D8300C3E0B1 /* MovieDetailState.swift in Sources */,
 				A5880B0F29DBFF960098DCDB /* InforView.swift in Sources */,
 				A562916529CC65B700C3E0B1 /* MoviePosterView.swift in Sources */,
+				A58D814E29DD79240091F501 /* LogView.swift in Sources */,
 				A562918929D2D34700C3E0B1 /* SafariView.swift in Sources */,
+				A58D815229DD7C230091F501 /* Auththen.swift in Sources */,
 				A562914929CAB09900C3E0B1 /* MovieStub.swift in Sources */,
 				A562914729C9C21800C3E0B1 /* MovieItems.swift in Sources */,
 				A562915829CB661800C3E0B1 /* MovieCarouseView.swift in Sources */,
@@ -343,6 +368,7 @@
 				A562918F29D4119300C3E0B1 /* SearchBarState.swift in Sources */,
 				A562915429CABE0000C3E0B1 /* LoadImage.swift in Sources */,
 				A5880B0B29DBCC6E0098DCDB /* LoginView.swift in Sources */,
+				A58D815029DD79510091F501 /* LoginRegister.swift in Sources */,
 				A562916B29CCA3A400C3E0B1 /* MovieListState.swift in Sources */,
 				A562917B29D137AF00C3E0B1 /* MoviesListView.swift in Sources */,
 				A562918229D19CB300C3E0B1 /* ServiceDM.swift in Sources */,
@@ -351,8 +377,10 @@
 				A562915A29CBECEF00C3E0B1 /* MoviesModel.swift in Sources */,
 				A562918D29D2E03300C3E0B1 /* SearchBarView.swift in Sources */,
 				A5880B0D29DBFCBF0098DCDB /* HomeScreenView.swift in Sources */,
+				A58D815629DD7E8B0091F501 /* HomeLogView.swift in Sources */,
 				A562914229C9AE5200C3E0B1 /* MovieStore.swift in Sources */,
 				A562914429C9B30000C3E0B1 /* Utils.swift in Sources */,
+				A58D815429DD7E360091F501 /* String.swift in Sources */,
 				A562917129CD4D1F00C3E0B1 /* LoadingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

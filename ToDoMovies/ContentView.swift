@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-   
+    
     var body: some View {
-        LoginView(movies: Movie.stubbedMovies.results ?? [])
+       // LoginView(movies: Movie.stubbedMovies.results ?? [])
+        HomeLogView()
     }
 }
 

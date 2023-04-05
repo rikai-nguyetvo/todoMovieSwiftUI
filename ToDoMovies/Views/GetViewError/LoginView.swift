@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 
+
 struct LoginView: View {
     
     @State private var username = ""
@@ -17,8 +18,16 @@ struct LoginView: View {
     @State private var showingLoginScreen = false
     @State private var userIsLoggedIn = false
     let movies : [Movie]
-         
+    
     var body: some View {
+        if userIsLoggedIn {
+            HomeScreen(movies: movies) }
+        else{
+            content
+        }
+    }
+         
+    var content: some View {
         NavigationView{
             ZStack{
                 Color.mint.opacity(0.6)
@@ -46,32 +55,29 @@ struct LoginView: View {
                         .cornerRadius(8)
                         .border(.red, width: CGFloat(wrongPassword))
                     Button{
-                        register()
-                      
+                         authenUser(username: username, password: password)
+                        
                     }label: {
-                        Text("Sign").font(.headline)
+                        Text("Login").font(.headline)
                     }
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
                     .background(.mint.opacity(0.7))
                     .cornerRadius(8)
-                    
-                    Button{
-                       // login()
-                        authenUser(username: username, password: password)
-                    }label: {
-                        Text("Already have an acount? Login").font(.headline)
-                    }
-                    .foregroundColor(.white)
-                    .frame(width: 300, height: 50)
-                    .background(.mint.opacity(0.7))
-                    .cornerRadius(8)
-                    .offset(y: 110)
-                    
                     
                     NavigationLink(destination: HomeScreen(movies: movies), isActive: $showingLoginScreen){
                         EmptyView()
                     }
+                    
+                    Button{
+                       
+                    }label: {
+                        Text("You are'nt have an account? Sign now").font(.headline)
+                    }
+                    .foregroundColor(.blue)
+                    .cornerRadius(8)
+                    .offset(y: 110)
+            
                 }
                 .onAppear{
                     Auth.auth().addStateDidChangeListener{
@@ -83,29 +89,31 @@ struct LoginView: View {
                 }
                 .ignoresSafeArea()
                 .navigationBarHidden(true)
+                
             }
             
         }
         
     }
     
-    func login(){
-        Auth.auth().signIn(withEmail: username, password: password){
-            result, error in
-            if error != nil {
-                print(error?.localizedDescription)
-            }
-        }
-    }
-    
-    func register(){
-        Auth.auth().createUser(withEmail: username, password: password){
-            result, error in
-            if error != nil {
-                print(error?.localizedDescription)
-            }
-        }
-    }
+//    func login(){
+//        Auth.auth().signIn(withEmail: username, password: password){
+//            result, error in
+//            if error != nil {
+//                print(error?.localizedDescription)
+//            }
+//            print("success!")
+//        }
+//    }
+//
+//    func register(){
+//        Auth.auth().createUser(withEmail: username, password: password){
+//            result, error in
+//            if error != nil {
+//                print(error?.localizedDescription)
+//            }
+//        }
+//    }
     
     func authenUser(username: String, password: String){
         if username.lowercased() == "minhnguyet123"

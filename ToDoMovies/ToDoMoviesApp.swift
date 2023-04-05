@@ -10,6 +10,8 @@ import Firebase
 
 @main
 struct ToDoMoviesApp: App {
+    
+  //  @UIApplicationDelegateAdaptor
     init(){
         FirebaseApp.configure()
     }
@@ -20,3 +22,11 @@ struct ToDoMoviesApp: App {
         }
     }
 }
+
+//class AppDelegate: NSObject, UIApplicationDelegateAdaptor{
+//    func application(_ application: UIApplication, didFinishLaunchingWithOption launchOption : [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+//        FirebaseApp.configure()
+//
+//        return true
+//    }
+//}

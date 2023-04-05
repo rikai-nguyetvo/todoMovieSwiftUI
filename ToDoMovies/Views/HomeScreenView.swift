@@ -31,6 +31,7 @@ struct HomeScreen: View {
                 }
                        .tag(Tab.detail)
                }
+        .navigationBarBackButtonHidden(true)
     }
 }
 

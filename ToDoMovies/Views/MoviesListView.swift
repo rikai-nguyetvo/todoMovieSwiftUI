@@ -67,6 +67,7 @@ struct ListViewDM: View {
                self.upcomingState.loadMovies(with: .upcoming)
                self.topRatedState.loadMovies(with: .top_rated)
            }
+          
            
        }
    
